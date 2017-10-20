@@ -26,7 +26,7 @@ return reactor.core.publisher.Flux.zip(interaval,evnts).map(reactor.util.functio
 
     public String randomUser(){
 
-        String[] users="Chary, Ramana".split(",");
+        String[] users="Chary, Rajuiah".split(",");
         return  users[new java.util.Random().nextInt(users.length)];
     }
 
