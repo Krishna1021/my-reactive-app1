@@ -19,16 +19,16 @@ public class FluxFlexController {
 @org.springframework.context.annotation.Bean
     org.springframework.web.reactive.function.server.RouterFunction<org.springframework.web.reactive.function.server
             .ServerResponse> charys(com.example.myspringreactive.FluxFlexService fluxFlexService){
-    return org.springframework.web.reactive.function.server.RouterFunctions.route(GET("/movies"),
-            request-> ok().body(fluxFlexService.all(),Movie.class)).andRoute(GET("/movies/{id}"),request->ok().body
-            (fluxFlexService.byId
-            (request.pathVariable("id")),Movie.class))
-            .andRoute(GET("/movies/{id}/events"), serverRequest ->
-                    ok().contentType(org.springframework.http.MediaType.TEXT_EVENT_STREAM)
+        return org.springframework.web.reactive.function.server.RouterFunctions.route(GET("/movies"),
+                request-> ok().body(fluxFlexService.all(),Movie.class)).andRoute(GET("/movies/{id}"),request->ok().body
+                (fluxFlexService.byId
+                        (request.pathVariable("id")),Movie.class))
+                .andRoute(GET("/movies/{id}/events"), serverRequest ->
+            ok().contentType(org.springframework.http.MediaType.TEXT_EVENT_STREAM)
                     .body(fluxFlexService.byId(serverRequest.pathVariable("id")).flatMapMany(
                             fluxFlexService::streamStreams),MovieEvent.class));
 
-}
+    }
 
 
 
